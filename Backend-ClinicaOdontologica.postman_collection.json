@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "45646f62-b247-43a2-abd0-161eb90503c3",
+		"name": "Backend-ClinicaOdontologica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37880070"
+	},
+	"item": [
+		{
+			"name": "Pacientes",
+			"item": [
+				{
+					"name": "http://localhost:8080/paciente/guardar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apellido\" : \"Parra\",\r\n    \"nombre\":\"Luisa\",\r\n    \"dni\": \"2312313\",\r\n    \"fechaIngreso\": \"2024-08-10\",\r\n    \"domicilio\": {\"calle\":\"falsa\",\r\n        \"numero\":123,\r\n        \"localidad\":\"puerto madre\",\r\n        \"provincia\": \"Chubut\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/paciente/guardar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/paciente/buscar/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/paciente/buscar/1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/paciente/buscartodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/paciente/buscartodos"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/paciente/modificar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"apellido\": \"Plaza\",\r\n    \"nombre\": \"Julian\",\r\n    \"dni\": \"11122313\",\r\n    \"fechaIngreso\": \"2024-08-10\",\r\n    \"domicilio\": {\r\n        \"id\": 1,\r\n        \"calle\": \"falsa\",\r\n        \"numero\": 123,\r\n        \"localidad\": \"Rio grande\",\r\n        \"provincia\": \"ABD\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/paciente/modificar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/paciente/eliminar/3",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/paciente/eliminar/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Odontologos",
+			"item": [
+				{
+					"name": "http://localhost:8080/odontologo/guardar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"apellido\": \"CALCIO\",\r\n        \"nombre\": \"MRS\",\r\n        \"matricula\": \"1456\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/odontologo/guardar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/odontologo/buscar/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/odontologo/buscar/2"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/odontologo/buscartodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/odontologo/buscartodos"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 1,\r\n        \"apellido\": \"CALCINA\",\r\n        \"nombre\": \"ANDREA\",\r\n        \"matricula\": \"68\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/odontologo/modificar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/odontologo/eliminar/2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/odontologo/eliminar/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Turnos",
+			"item": [
+				{
+					"name": "http://localhost:8080/turnos/guardar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paciente\":{\r\n        \"id\":1\r\n    },\r\n    \"odontologo\":{\r\n        \"id\":1\r\n    },\r\n    \"fecha\":\"2024-08-21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/turnos/guardar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/turnos/buscar/2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/turnos/buscar/2"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/turnos/buscartodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/turnos/buscartodos"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/turnos/modificar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"paciente\": {\r\n        \"id\": 1,\r\n        \"apellido\": \"PEREZ\",\r\n        \"nombre\": \"JUAN\",\r\n        \"dni\": \"45566\",\r\n        \"fechaIngreso\": \"2024-07-15\",\r\n        \"domicilio\": {\r\n            \"id\": 1,\r\n            \"calle\": \"SIEMPRE VIVA\",\r\n            \"numero\": 123,\r\n            \"localidad\": \"CABA\",\r\n            \"provincia\": \"BUENOS AIRES\"\r\n        }\r\n    },\r\n    \"odontologo\": {\r\n        \"id\": 1,\r\n        \"apellido\": \"DENTITAS\",\r\n        \"nombre\": \"DOCTOR\",\r\n        \"matricula\": \"123456\"\r\n    },\r\n    \"fecha\": \"2024-08-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/turnos/modificar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/turnos/eliminar/1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/turnos/eliminar/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DTO",
+			"item": [
+				{
+					"name": "guardar turno",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"paciente_id\":1,\r\n    \"odontologo_id\":1,\r\n    \"fecha\": \"2024-10-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/turnos/guardar"
+					},
+					"response": []
+				},
+				{
+					"name": "modifcar turno",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"paciente_id\":1,\r\n    \"odontologo_id\":1,\r\n    \"fecha\": \"2024-09-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/turnos/modificar"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/turnos/buscartodos Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/turnos/buscartodos"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/turnos/eliminar/1 Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/turnos/eliminar/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HQL",
+			"item": [
+				{
+					"name": "buscar paciente por nombre y apellido",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "like paciente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "turno por paciente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Extra 1 - buscar odontologo por nombre y apellido",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Extra 2 - like odontologo",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,7 +1,8 @@
 package com.dh.clinica.service.impl;
 
 import com.dh.clinica.entity.Odontologo;
-import com.dh.clinica.entity.Paciente;
+import com.dh.clinica.exception.BadRequestException;
+import com.dh.clinica.exception.NotFoundException;
 import com.dh.clinica.repository.IOdontologoRepository;
 import com.dh.clinica.service.IOdontologoService;
 import org.slf4j.Logger;
@@ -22,6 +23,12 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public Odontologo guardarOdontologo(Odontologo odontologo) {
+        if (odontologo == null ||
+                odontologo.getNombre() == null || odontologo.getNombre().trim().isEmpty() ||
+                odontologo.getApellido() == null || odontologo.getApellido().trim().isEmpty() ||
+                odontologo.getMatricula() == null || odontologo.getMatricula().trim().isEmpty()) {
+            throw new BadRequestException("{\"mensaje\": \"Datos invalidos\"}");
+        }
         logger.info("odontologo persistido "+ odontologoRepository.save(odontologo) );
         return odontologoRepository.save(odontologo);
     }
@@ -46,6 +53,10 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public void eliminarOdontologo(Integer id) {
+        Optional<Odontologo> odontologo = odontologoRepository.findById(id);
+        if (!odontologo.isPresent()) {
+            throw new NotFoundException("{\"mensaje\": \"El odontologo no fue encontrado\"}");
+        }
         logger.info("odontologo eliminado "+ odontologoRepository.findById(id));
         odontologoRepository.deleteById(id);
     }

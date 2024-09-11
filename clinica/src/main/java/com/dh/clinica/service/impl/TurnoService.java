@@ -8,6 +8,8 @@ import com.dh.clinica.dto.response.TurnoResponseDto;
 import com.dh.clinica.entity.Odontologo;
 import com.dh.clinica.entity.Paciente;
 import com.dh.clinica.entity.Turno;
+import com.dh.clinica.exception.BadRequestException;
+import com.dh.clinica.exception.NotFoundException;
 import com.dh.clinica.repository.ITurnoRepository;
 import com.dh.clinica.service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class TurnoService implements ITurnoService {
     public TurnoResponseDto guardarTurno(TurnoRequestDto turnoRequestDto) {
         Optional<Paciente> paciente = pacienteService.buscarPorId(turnoRequestDto.getPaciente_id());
         Optional<Odontologo> odontologo = odontologService.buscarPorId(turnoRequestDto.getOdontologo_id());
+        if (!paciente.isPresent() || !odontologo.isPresent()) {
+            throw new BadRequestException("El paciente o el odontólogo no existen");
+        }
         Turno turno = new Turno(); // este es el que va sin id
         Turno turnoDesdeDb = null; // este es el que viene con id
         TurnoResponseDto turnoARetornar = null;
@@ -123,6 +128,10 @@ public class TurnoService implements ITurnoService {
 
     @Override
     public void eliminarTurno(Integer id) {
+        Optional<Turno> turno = turnoRepository.findById(id);
+        if (!turno.isPresent()) {
+            throw new NotFoundException("Turno con ID " + id + " no encontrado");
+        }
         turnoRepository.deleteById(id);
     }
 

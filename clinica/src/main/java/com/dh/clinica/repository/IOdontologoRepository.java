@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IOdontologoRepository extends JpaRepository<Odontologo,Integer> {
@@ -15,4 +16,8 @@ public interface IOdontologoRepository extends JpaRepository<Odontologo,Integer>
 
     @Query("Select o from Odontologo o where o.nombre LIKE %:parteNombre% ")
     List<Odontologo> findByNombreLike(String parteNombre);
+
+    Optional<Odontologo> findByNombre(String nombre);
+    Optional<Odontologo> findByApellido(String apellido);
+    Optional<Odontologo> findByMatricula(String matricula);
 }

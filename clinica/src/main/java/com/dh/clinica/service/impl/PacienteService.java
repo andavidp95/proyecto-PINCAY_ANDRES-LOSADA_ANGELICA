@@ -1,6 +1,8 @@
 package com.dh.clinica.service.impl;
 
 import com.dh.clinica.entity.Paciente;
+import com.dh.clinica.exception.BadRequestException;
+import com.dh.clinica.exception.NotFoundException;
 import com.dh.clinica.repository.IPacienteRepository;
 import com.dh.clinica.service.IPacienteService;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public Paciente guardarPaciente(Paciente paciente) {
+        if (paciente == null || paciente.getNombre() == null || paciente.getDni() == null) {
+            throw new BadRequestException("Los campos obligatorios no están completos");
+        }
         return pacienteRepository.save(paciente);
     }
 
@@ -40,6 +45,10 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public void eliminarPaciente(Integer id) {
+        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        if (!paciente.isPresent()) {
+            throw new NotFoundException("Paciente con ID " + id + " no encontrado");
+        }
         pacienteRepository.deleteById(id);
     }
 
